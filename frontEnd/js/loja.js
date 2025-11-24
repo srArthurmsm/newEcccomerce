@@ -1,5 +1,8 @@
 const cad = document.getElementById('cad')
 const Login = document.getElementById('Login')
+const token = localStorage.getItem('token')
+
+const payload = JSON.parse(atob(token.split('.')[1]));
 
 cad.addEventListener('click',(e)=>{
     window.location.href = "./cadastrar.html"
@@ -21,6 +24,10 @@ const tabela = document.getElementById('tabela')
 
 
 function listar(){
+    if(payload.rank == "DEV"){
+        document.getElementById("criar").disabled = false;
+    }
+
     fetch('http://localhost:3000/jogo')
     .then(resp => resp.json())
     .then((dados)=>{

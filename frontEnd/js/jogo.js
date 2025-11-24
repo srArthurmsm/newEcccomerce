@@ -54,7 +54,6 @@ function getThings(){
                     <p>${review.Conteudo}</p>
                 </div>
             `
-            
             tabela.appendChild(card)
         })
     })

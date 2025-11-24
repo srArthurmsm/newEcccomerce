@@ -1,6 +1,5 @@
 const {Cliente, Compra, Cupom, Desenvolvedor,Genero, Jogo, Plataforma, Review} = require('./model/rel')
 const conn = require('./db/conn')
-
 async function SyncDataBase(){
     try{
         await conn.sync({force:true})
@@ -12,5 +11,4 @@ async function SyncDataBase(){
         conn.close()
     }
 }
-
 SyncDataBase()

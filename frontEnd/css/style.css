@@ -299,6 +299,12 @@ select option {
     object-fit: cover;
 }
 
+#criar{
+    background: #5c7e10;
+    color: #fff;
+    transition: 0.2s;
+}
+
 footer {
     position: fixed;
     bottom: 0;

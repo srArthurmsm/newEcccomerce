@@ -13,7 +13,7 @@ const cadastrar = async (req,res)=>{
             valores.imagem = "/" + filePath;
         }
 
-        const dados = Cliente.create({
+        const dados = await Cliente.create({
             nome: valores.nome,
             DataNascimento: valores.DataNascimento,
             telefone: valores.telefone,
