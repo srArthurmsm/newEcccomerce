@@ -34,16 +34,13 @@ app.get('/', (req,res)=>{
     res.status(200).json({message:'esta rodando'})
 })
 
-app.use(middleware.middleware)
+app.post('/review', middleware.middleware, reviewController.cadastrar)
+app.post('/compra', middleware.middleware,compraController.cadastrar)
+app.post('/compra/carrinho', middleware.middleware,compraController.cadastrarCarrinho)
+app.get('/compra', middleware.middleware,compraController.listar)
 
-app.post('/review', reviewController.cadastrar)
-app.post('/compra', compraController.cadastrar)
-app.post('/compra/carrinho', compraController.cadastrarCarrinho)
-app.get('/compra', compraController.listar)
-
-app.use(middleware.ranking)
-
-app.post("/jogo", jogoController.cadastrar)
+app.post("/jogo", upload.single('capa'), middleware.middleware,middleware.ranking,jogoController.cadastrar)
+app.post("/jogo/lote",upload.single('capa'), middleware.middleware ,middleware.ranking,jogoController.cadastrarLote)
 
 conn.sync()
 .then(()=>{
