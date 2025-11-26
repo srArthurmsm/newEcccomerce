@@ -305,6 +305,11 @@ select option {
     transition: 0.2s;
 }
 
+#criar:disabled{
+    background-color: #52585e;
+}
+
+
 footer {
     position: fixed;
     bottom: 0;

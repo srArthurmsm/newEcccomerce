@@ -49,3 +49,11 @@ function listar(){
 
 
 window.onload = listar
+
+
+const criar = document.getElementById('criar')
+
+
+criar.addEventListener('click',(e)=>{
+    window.location.href = './criarJogo.html.'
+})

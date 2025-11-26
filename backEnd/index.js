@@ -16,15 +16,19 @@ const reviewController = require('./controller/review.controller')
 const authController = require('./controller/auth.controller')
 const middleware = require('./middleware/auth.middleware')
 
-
-
-app.use(express.urlencoded({extended:true}))
-app.use(express.json())
 app.use(cors())
 app.use('/uploads', express.static('uploads'))
 
-
 app.post('/cliente', upload.single('imagem'), clienteController.cadastrar)
+app.post("/jogo", upload.single('capa'), middleware.middleware,middleware.ranking,jogoController.cadastrar)
+app.post("/jogo/lote" ,upload.array('capas', 10), middleware.middleware ,middleware.ranking,jogoController.cadastrarLote)
+
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+
+
+
+
 app.post('/login', authController.Login)
 app.get("/jogo", jogoController.listar)
 app.get("/jogo/:id", jogoController.findByID)
@@ -39,8 +43,6 @@ app.post('/compra', middleware.middleware,compraController.cadastrar)
 app.post('/compra/carrinho', middleware.middleware,compraController.cadastrarCarrinho)
 app.get('/compra', middleware.middleware,compraController.listar)
 
-app.post("/jogo", upload.single('capa'), middleware.middleware,middleware.ranking,jogoController.cadastrar)
-app.post("/jogo/lote",upload.single('capa'), middleware.middleware ,middleware.ranking,jogoController.cadastrarLote)
 
 conn.sync()
 .then(()=>{

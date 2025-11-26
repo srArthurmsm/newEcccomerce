@@ -22,7 +22,7 @@ function getThings(){
         precoCompra = dados.preco
         desc.innerHTML = dados.descricao
         nome.innerHTML = dados.nomeJogo
-        imagem.src = dados.capa
+        imagem.src = `http://localhost:3000${dados.capa}`
     })
     .catch((err)=>{
         console.log(err)
@@ -36,7 +36,7 @@ function getThings(){
     .then(resp => resp.json())
     .then((dados)=>{
         console.log(dados)
-        dados.forEach((review) => {
+        dados.filter(review => review.idJogo == id).forEach((review) => {
 
             const card = document.createElement("div")
             card.classList.add("review-card")
@@ -93,6 +93,11 @@ comprar.addEventListener('click',(e)=>{
 })
 
 
+carrinho.addEventListener('click',(e)=>{
+
+    adicionarProduto()
+})
+
 
 
 const enviar = document.getElementById('enviar')
@@ -123,4 +128,26 @@ enviar.addEventListener('click',(e)=>{
     })
 })
 
+
+let produtos = JSON.parse(localStorage.getItem('produtos')) || []
+
+
+function adicionarProduto() {
+    fetch(`http://localhost:3000/jogo/${id}`)
+        .then(resp => resp.json())
+        .then((dados) => {
+            const precoCompra = dados.preco;
+            const nome = dados.nomeJogo;
+
+            const produto = { nome, precoCompra, id };
+            produtos.push(produto);
+
+            localStorage.setItem('produtos', JSON.stringify(produtos));
+
+            alert(`${qtde}x ${nome} adicionado(s) ao carrinho!`);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
 window.onload = getThings

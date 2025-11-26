@@ -5,7 +5,7 @@ const bcrypt = require('../service/bcrypt.service')
 const cadastrar = async (req,res)=>{
     const valores = req.body
     try{
-        hashSenha = await bcrypt.criarSenha(valores.senha)
+        const hashSenha = await bcrypt.criarSenha(valores.senha)
         console.log(hashSenha)
 
         if (req.file) {

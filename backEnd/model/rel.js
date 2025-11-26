@@ -6,31 +6,30 @@ const Genero = require('./Genero')
 const Jogo = require('./Jogo')
 const Plataforma = require('./Plataforma')
 const Review = require('./Review')
+const CompraItem = require('./CompraItens')
 
-//// Cliente x Compra ///////
+
+//////////
 Cliente.hasMany(Compra, {
-    foreignKey: 'idCliente',
-    onDelete: 'CASCADE'
-})
-
+    foreignKey: 'idCliente'
+});
 Compra.belongsTo(Cliente, {
-    foreignKey: 'idCliente',
-    onUpdate: 'CASCADE'
-})
-////////////////////////////
-
-/////////Jogo x Compra/////////
-Jogo.hasMany(Compra, {
-    foreignKey: 'idJogo',
-    onDelete: 'CASCADE'
-})
-
-Compra.belongsTo(Jogo, {
-    foreignKey: 'idJogo',
-    onUpdate: 'CASCADE'
-})
-////////////////////////////
-
+    foreignKey: 'idCliente'
+});
+//////////
+Compra.hasMany(CompraItem, {
+    foreignKey: 'codCompra'
+});
+CompraItem.belongsTo(Compra, {
+    foreignKey: 'codCompra'
+});
+/////////
+Jogo.hasMany(CompraItem, {
+    foreignKey: 'idJogo'
+});
+CompraItem.belongsTo(Jogo, {
+    foreignKey: 'idJogo'
+});
 /////////Jogo x Genero/////////
 Genero.hasMany(Jogo, {
     foreignKey: 'idGenero',
