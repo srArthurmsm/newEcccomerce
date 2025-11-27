@@ -51,7 +51,7 @@ const Jogo = db.define('jogos',{
     },
     capa:{
         type: DataTypes.STRING(127),
-        allowNull: true
+        allowNull: false
     },
     requisitosMinimos:{
         type: DataTypes.STRING(127),

@@ -61,11 +61,13 @@ const cadastrarCarrinho = async (req, res) => {
 
 const listar = async (req, res) => {
     try {
-        const dados = await Compra.findAll({
+        const dados = await CompraItem.findAll({
             include: [
                 {
-                    model: CompraItem,
-                    include: [Jogo]
+                    model: Jogo,
+                },
+                {
+                    model: Compra,
                 }
             ]
         })

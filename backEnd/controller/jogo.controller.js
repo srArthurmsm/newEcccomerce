@@ -6,7 +6,7 @@ const cadastrar = async (req,res)=>{
     try{
         if (req.file) {
             const filePath = req.file.path.replace(/\\/g, "/");
-            valores.imagem = "/" + filePath;
+            valores.capa = "/" + filePath;
         }
         await Jogo.create(valores)
         res.status(200).json({message:`Os Jogos Foi cadastrado`})

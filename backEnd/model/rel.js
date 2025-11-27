@@ -84,13 +84,13 @@ Review.belongsTo(Jogo, {
 /////////Cliente x Reviews/////////
 Cliente.hasMany(Review, {
     foreignKey: 'idCliente',
-    as: 'reviews', // Mudar para nome consistente
+    as: 'reviews', 
     onDelete: 'CASCADE'
 })
 
 Review.belongsTo(Cliente, {
     foreignKey: 'idCliente',
-    as: 'cliente', // Mudar para nome consistente
+    as: 'cliente',
     onUpdate: 'CASCADE'
 })
 ////////////////////////////
@@ -107,4 +107,4 @@ Cupom.belongsTo(Compra, {
 })
 
 // Exportar todos os modelos
-module.exports = {Cliente,Compra,Cupom,Desenvolvedor,Genero,Jogo,Plataforma,Review}
+module.exports = {Cliente,Compra,Cupom,Desenvolvedor,Genero,Jogo,Plataforma,Review, CompraItem}

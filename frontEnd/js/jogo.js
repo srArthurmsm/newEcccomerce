@@ -1,3 +1,13 @@
+const cad = document.getElementById('cad')
+const Login = document.getElementById('Login')
+
+cad.addEventListener('click',(e)=>{
+    window.location.href = "./cadastrar.html"
+})
+
+Login.addEventListener('click',(e)=>{
+    window.location.href = "./Login.html"
+})
 
 const imagem = document.getElementById('capa')
 const preco = document.getElementById('preco')
@@ -10,7 +20,27 @@ const id = params.get("id");
 
 const tabela = document.getElementById('reviews_tabela')
 
-const payload = JSON.parse(atob(token.split('.')[1]));
+
+const user = document.getElementById('user')
+const payload = JSON.parse(atob(token.split('.')[1]))
+if(localStorage.getItem('token')){
+    console.log('esta logado')
+    user.innerHTML = ""
+    const userButton = document.createElement('button')
+    userButton.classList.add('userPage')
+    const imagem = document.createElement('img')
+    imagem.classList.add('userImagem')
+    imagem.src = `http://localhost:3000${payload.imagem}`
+    const username = document.createElement('div')
+    username.innerHTML = payload.nome
+    userButton.appendChild(imagem)
+    userButton.appendChild(username)
+    user.appendChild(userButton)
+    userButton.addEventListener('click',(e)=>{
+        window.location.href = "./Perfil.html"
+    })
+}
+
 
 function getThings(){
     console.log("payload.imagem =", payload.imagem);
